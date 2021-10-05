@@ -12,7 +12,14 @@ namespace TaskManager.DB
     {
         public DBContext() : base("name=DBContext")
         {
-            
+            try
+            {
+                Database.Initialize(false);
+            }
+            catch (Exception ex)
+            {
+                throw new Exceptions.CustomException(Properties.Resources.messageErrorSqlConnection);
+            }
         }
         public DbSet<Model.WorkTask> WorkTasks { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

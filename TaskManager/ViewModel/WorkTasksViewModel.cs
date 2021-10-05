@@ -32,6 +32,17 @@ namespace TaskManager.ViewModel
         #region Constructors
         public WorkTasksViewModel()
         {
+            //SQL connection Test
+            try
+            {
+                DB.TasksRepository.CheckConnection();
+            }
+            catch(Exceptions.CustomException ex)
+            {
+                System.Windows.MessageBox.Show(ex.Message,
+                    TaskManager.Properties.Resources.titleError, MessageBoxButton.OK, MessageBoxImage.Error);
+                App.Current.Shutdown();
+            }
             try
             {
                 Model.TasksHolder th = new Model.TasksHolder(true);
@@ -494,5 +505,6 @@ namespace TaskManager.ViewModel
         #endregion OnFinishTimeChanged
 
         #endregion TableProperties
+
     }
 }
