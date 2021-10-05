@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.SqlClient;
 using System.Data.Entity;
 using System.Collections.ObjectModel;
 
@@ -16,9 +17,9 @@ namespace TaskManager.DB
             {
                 Database.Initialize(false);
             }
-            catch (Exception ex)
+            catch (SqlException)
             {
-                throw new Exceptions.CustomException(Properties.Resources.messageErrorSqlConnection);
+                throw;
             }
         }
         public DbSet<Model.WorkTask> WorkTasks { get; set; }

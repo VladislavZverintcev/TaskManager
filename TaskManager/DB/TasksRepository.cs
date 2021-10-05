@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -20,7 +19,7 @@ namespace TaskManager.DB
                     context.Database.Connection.Open();
                     context.Database.Connection.Close();
                 }
-                catch (Exceptions.CustomException)
+                catch
                 {
                     throw;
                 }

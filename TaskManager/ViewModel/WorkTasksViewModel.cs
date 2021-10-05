@@ -12,6 +12,7 @@ using System.Windows.Interactivity;
 using GalaSoft.MvvmLight.Command;
 using System.Collections.ObjectModel;
 using System.Text.RegularExpressions;
+using System.Data.SqlClient;
 
 namespace TaskManager.ViewModel
 {
@@ -37,9 +38,9 @@ namespace TaskManager.ViewModel
             {
                 DB.TasksRepository.CheckConnection();
             }
-            catch(Exceptions.CustomException ex)
+            catch(SqlException)
             {
-                System.Windows.MessageBox.Show(ex.Message,
+                System.Windows.MessageBox.Show(Properties.Resources.messageErrorSqlConnection,
                     TaskManager.Properties.Resources.titleError, MessageBoxButton.OK, MessageBoxImage.Error);
                 App.Current.Shutdown();
             }
