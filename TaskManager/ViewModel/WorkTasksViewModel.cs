@@ -1,17 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.ComponentModel;
 using System.Windows.Data;
 using System.Windows.Input;
-using System.Windows.Controls;
-using System.Windows.Interactivity;
 using GalaSoft.MvvmLight.Command;
 using System.Collections.ObjectModel;
-using System.Text.RegularExpressions;
 using System.Data.SqlClient;
 
 namespace TaskManager.ViewModel
@@ -38,12 +32,19 @@ namespace TaskManager.ViewModel
             {
                 DB.TasksRepository.CheckConnection();
             }
-            catch(SqlException)
+            catch (System.Data.DataException)
+            {
+                System.Windows.MessageBox.Show(Properties.Resources.messageErrorDataException,
+                    TaskManager.Properties.Resources.titleError, MessageBoxButton.OK, MessageBoxImage.Error);
+                App.Current.Shutdown();
+            }
+            catch (SqlException)
             {
                 System.Windows.MessageBox.Show(Properties.Resources.messageErrorSqlConnection,
                     TaskManager.Properties.Resources.titleError, MessageBoxButton.OK, MessageBoxImage.Error);
                 App.Current.Shutdown();
             }
+            //
             try
             {
                 Model.TasksHolder th = new Model.TasksHolder(true);
@@ -506,6 +507,5 @@ namespace TaskManager.ViewModel
         #endregion OnFinishTimeChanged
 
         #endregion TableProperties
-
     }
 }

@@ -1,10 +1,4 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 
 namespace TaskManager.Model
 {
@@ -12,7 +6,7 @@ namespace TaskManager.Model
     {
         public static string GetSerializedObj(object obj)
         {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(obj);
+            return JsonConvert.SerializeObject(obj);
         }
         public static object GetDeserializedObj(string jString)
         {
@@ -22,7 +16,7 @@ namespace TaskManager.Model
             }
             else
             {
-                return Newtonsoft.Json.JsonConvert.DeserializeObject(jString);
+                return JsonConvert.DeserializeObject(jString);
             }
         }
     }

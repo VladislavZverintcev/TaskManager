@@ -123,6 +123,9 @@
   <data name="hour" xml:space="preserve">
     <value>ч.</value>
   </data>
+  <data name="messageErrorDataException" xml:space="preserve">
+    <value>Ошибка! Невозможно создать базу данных, возможно не установлен соответствующий дистрибутив или отсутствуют права!</value>
+  </data>
   <data name="messageErrorPropertyNotExist" xml:space="preserve">
     <value>Ошибка! Попытка изменить несуществующее свойство сущности БД!</value>
   </data>

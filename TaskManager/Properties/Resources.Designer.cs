@@ -79,6 +79,15 @@ namespace TaskManager.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Ошибка! Невозможно создать базу данных, возможно не установлен соответствующий дистрибутив или отсутствуют права!.
+        /// </summary>
+        public static string messageErrorDataException {
+            get {
+                return ResourceManager.GetString("messageErrorDataException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Ошибка! Попытка изменить несуществующее свойство сущности БД!.
         /// </summary>
         public static string messageErrorPropertyNotExist {

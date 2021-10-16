@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Data.Entity;
-using System.Collections.ObjectModel;
 
 namespace TaskManager.DB
 {
@@ -13,6 +8,17 @@ namespace TaskManager.DB
     {
         public DBContext() : base("name=DBContext")
         {
+            if(!Database.Exists())
+            {
+                try
+                {
+                    Database.Create();
+                }
+                catch (System.Data.DataException)
+                {
+                    throw;
+                }
+            }
             try
             {
                 Database.Initialize(false);
@@ -21,6 +27,11 @@ namespace TaskManager.DB
             {
                 throw;
             }
+            catch (System.Data.DataException)
+            {
+                throw;
+            }
+
         }
         public DbSet<Model.WorkTask> WorkTasks { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
