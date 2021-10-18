@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
 
 namespace TaskManager.Model
 {
@@ -30,7 +32,8 @@ namespace TaskManager.Model
         public string Name
         {
             get { return name; }
-            set { name = value; PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Name")); }
+            set { name = value; UpLinkTask?.SortSubs(); 
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Name")); }
         }
         public string Description
         {
@@ -404,6 +407,16 @@ namespace TaskManager.Model
             var rep = new DB.TasksRepository();
             rep.SetTaskParam(this, "FinishTime", FinishTime);
         }
+        int Search(ObservableCollection<WorkTask> collection, int startIndex, WorkTask other)
+        {
+            for (int i = startIndex; i < collection.Count; i++)
+            {
+                if (other.Equals(collection[i]))
+                    return i;
+            }
+
+            return -1;
+        }
         #endregion Private
 
         #region Public
@@ -433,6 +446,7 @@ namespace TaskManager.Model
         {
             subTask.UpLinkTask = this;
             SubWorkTasks.Add(subTask);
+            SortSubs();
             Status = status;
         }
         public void ExpandUpLinks()
@@ -530,6 +544,34 @@ namespace TaskManager.Model
                 StatusList = ((Newtonsoft.Json.Linq.JArray)(JsonWorker.GetDeserializedObj(StatusListJsonS))).ToObject<ObservableCollection<string>>();
             }
             #endregion Deserialize JSon strings
+        }
+        public void SortSubs()
+        {
+            if(SubWorkTasks != null && SubWorkTasks.Count != 0)
+            {
+                List<WorkTask> sorted = SubWorkTasks.OrderBy(x => x.Name).ToList();
+                int ptr = 0;
+                while (ptr < sorted.Count - 1)
+                {
+                    if (!SubWorkTasks[ptr].Equals(sorted[ptr]))
+                    {
+                        int idx = Search(SubWorkTasks, ptr + 1, sorted[ptr]);
+                        SubWorkTasks.Move(idx, ptr);
+                    }
+                    ptr++;
+                }
+            }
+        }
+        public void SortSubsCascad()
+        {
+            SortSubs();
+            if(SubWorkTasks?.Count > 0)
+            {
+                foreach(var sTask in subWorkTasks)
+                {
+                    sTask.SortSubsCascad();
+                }
+            }
         }
         #endregion Public
 

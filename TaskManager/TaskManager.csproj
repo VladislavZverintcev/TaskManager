@@ -123,6 +123,7 @@
     <Compile Include="Model\TasksHolder.cs" />
     <Compile Include="Model\WorkTask.cs" />
     <Compile Include="ViewModel\Commands\VMCommands.cs" />
+    <Compile Include="ViewModel\CustomSorter.cs" />
     <Compile Include="ViewModel\WorkTasksViewModel.cs" />
     <Compile Include="View\AllowableCharactersTextBoxBehavior.cs" />
     <Compile Include="View\MainWindow.xaml.cs">

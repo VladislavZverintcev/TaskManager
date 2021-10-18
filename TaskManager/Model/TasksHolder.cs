@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Timers;
 
 namespace TaskManager.Model
@@ -12,7 +13,6 @@ namespace TaskManager.Model
         private static System.Timers.Timer refreshExecTimer;
         #endregion Fields
         #region Properties
-        public int Id { get; set; }
         public static ObservableCollection<WorkTask> TaskList
         {
             get { return taskList; }
@@ -35,6 +35,7 @@ namespace TaskManager.Model
                     }
                 }
             }
+            FullSort();
             SetRefExecTimer();
         }
         #endregion Constructors
@@ -108,7 +109,6 @@ namespace TaskManager.Model
             }
             
         }
-
         public static WorkTask GetTaskByName(string taskName)
         {
             foreach(WorkTask findTask in TaskList)
@@ -118,6 +118,16 @@ namespace TaskManager.Model
                     return ftask;
             }
             return null;
+        }
+        public static void FullSort()
+        {
+            if(TaskList?.Count > 0)
+            {
+                foreach(var wTask in TaskList)
+                {
+                    wTask.SortSubsCascad();
+                }
+            }
         }
 
         #endregion TaskWorks

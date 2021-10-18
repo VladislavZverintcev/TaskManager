@@ -12,6 +12,8 @@ namespace TaskManager.ViewModel
 {
     public class WorkTasksViewModel : DependencyObject
     {
+        ListCollectionView view;
+
         #region TaskCollection
         public ICollectionView TaskItems
         {
@@ -49,6 +51,8 @@ namespace TaskManager.ViewModel
             {
                 Model.TasksHolder th = new Model.TasksHolder(true);
                 TaskItems = CollectionViewSource.GetDefaultView(Model.TasksHolder.TaskList);
+                view = (ListCollectionView)TaskItems;
+                view.CustomSort = new CustomSorter();
             }
             catch(Exception ex)
             {
