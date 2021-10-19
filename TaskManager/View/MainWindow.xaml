@@ -495,7 +495,14 @@
 
         </Style>
     </Window.Resources>
-
+    
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction 
+                Command="{Binding ActivateMainWindowComm}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    
     <Grid Name="mainGrid" Background= "{StaticResource gradientColor}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" MinWidth="200"/>

@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="annotationLoading" xml:space="preserve">
+    <value>Загрузка базы данных...</value>
+  </data>
   <data name="Apply" xml:space="preserve">
     <value>✔ Применить</value>
   </data>
@@ -179,5 +182,8 @@
   </data>
   <data name="titleError" xml:space="preserve">
     <value>Ошибка!</value>
+  </data>
+  <data name="titleLoading" xml:space="preserve">
+    <value>Менеджер Задач</value>
   </data>
 </root>

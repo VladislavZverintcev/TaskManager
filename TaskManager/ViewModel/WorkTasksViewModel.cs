@@ -7,13 +7,16 @@ using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using System.Collections.ObjectModel;
 using System.Data.SqlClient;
+using System.Windows.Media;
+using UniversalLoadingWindowLib;
+using System.Threading;
 
 namespace TaskManager.ViewModel
 {
     public class WorkTasksViewModel : DependencyObject
     {
         ListCollectionView view;
-
+        public event Action LoadingIsOver;
         #region TaskCollection
         public ICollectionView TaskItems
         {
@@ -29,6 +32,12 @@ namespace TaskManager.ViewModel
         #region Constructors
         public WorkTasksViewModel()
         {
+            //Create Loading Window in new Thread
+            Thread thread = new Thread(GetLoadingWindow);
+            thread.SetApartmentState(ApartmentState.STA); //Set the thread to STA
+            thread.Start();
+            //
+
             //SQL connection Test
             try
             {
@@ -36,12 +45,14 @@ namespace TaskManager.ViewModel
             }
             catch (System.Data.DataException)
             {
+                LoadingIsOver?.Invoke();
                 System.Windows.MessageBox.Show(Properties.Resources.messageErrorDataException,
                     TaskManager.Properties.Resources.titleError, MessageBoxButton.OK, MessageBoxImage.Error);
                 App.Current.Shutdown();
             }
             catch (SqlException)
             {
+                LoadingIsOver?.Invoke();
                 System.Windows.MessageBox.Show(Properties.Resources.messageErrorSqlConnection,
                     TaskManager.Properties.Resources.titleError, MessageBoxButton.OK, MessageBoxImage.Error);
                 App.Current.Shutdown();
@@ -56,9 +67,12 @@ namespace TaskManager.ViewModel
             }
             catch(Exception ex)
             {
+                LoadingIsOver?.Invoke();
                 System.Windows.MessageBox.Show(ex.Message, Properties.Resources.titleError, MessageBoxButton.OK, MessageBoxImage.Error);
+                App.Current.Shutdown();
             }
             TaskTableIsVisible = Visibility.Hidden;
+            LoadingIsOver?.Invoke();
         }
         #endregion Constructors
 
@@ -71,6 +85,29 @@ namespace TaskManager.ViewModel
                 selectedWorkTask = value; SetVisabilityTableTask(); UpdateTableProperties(); }
         }
         #endregion SelectedTask
+
+        #region MainWindow
+        RelayCommand _activateMainWindowComm;
+        public ICommand ActivateMainWindowComm
+        {
+            get
+            {
+                if (_activateMainWindowComm == null)
+                {
+                    _activateMainWindowComm = new RelayCommand(() => ActivateMainWindow(), true);
+                }
+                return _activateMainWindowComm;
+            }
+        }
+        void ActivateMainWindow()
+        {
+            if(Application.Current?.MainWindow != null)
+            {
+                Application.Current.MainWindow.Topmost = true;
+                Application.Current.MainWindow.Topmost = false;
+            }
+        }
+        #endregion MainWindow
 
         #region TaskTableVisible
         public Visibility TaskTableIsVisible
@@ -511,5 +548,20 @@ namespace TaskManager.ViewModel
         #endregion OnFinishTimeChanged
 
         #endregion TableProperties
+
+        void GetLoadingWindow()
+        {
+            Color a = new Color { A = 255, R = 41, G = 58, B = 73 };
+            Color b = new Color { A = 255, R = 31, G = 37, B = 46 };
+            LinearGradientBrush mainbrush = new LinearGradientBrush(a, b, 90);
+            Color title_foreground = new Color { A = 255, R = 255, G = 185, B = 0 };
+            Color annotation_foreground = new Color { A = 255, R = 255, G = 255, B = 225 };
+            string title = Properties.Resources.titleLoading;
+            string annotation = Properties.Resources.annotationLoading;
+            UniversalLoadingWindow ulw = new UniversalLoadingWindow(title, annotation, mainbrush,
+                title_foreground, title_foreground, annotation_foreground);
+            LoadingIsOver += () => ulw?.Close();
+            ulw.ShowDialog();
+        }
     }
 }

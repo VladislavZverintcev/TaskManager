@@ -61,6 +61,15 @@ namespace TaskManager.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Загрузка базы данных....
+        /// </summary>
+        public static string annotationLoading {
+            get {
+                return ResourceManager.GetString("annotationLoading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на ✔ Применить.
         /// </summary>
         public static string Apply {
@@ -246,6 +255,15 @@ namespace TaskManager.Properties {
         public static string titleError {
             get {
                 return ResourceManager.GetString("titleError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Менеджер Задач.
+        /// </summary>
+        public static string titleLoading {
+            get {
+                return ResourceManager.GetString("titleLoading", resourceCulture);
             }
         }
     }
