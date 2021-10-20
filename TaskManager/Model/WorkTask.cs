@@ -230,9 +230,11 @@ namespace TaskManager.Model
                 {
                     if (status == 3 || value == 3)
                     {
+                        value = 1;
+                        ControlOfExecutionHistory(value);
                         status = 1;
                         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Status"));
-                        value = 1;
+                        
                     }
                     if (StatusList.Contains(allStatus[3]))
                     {
