@@ -4,6 +4,32 @@
              xmlns:local="clr-namespace:TaskManager"
              StartupUri="View\MainWindow.xaml">
     <Application.Resources>
-         
+        <!-- Brushes -->
+        <SolidColorBrush x:Key="mainBrush" Color="#FF1F252E" />
+        <SolidColorBrush x:Key="mainBrush2" Color="#FF293A49" />
+        <SolidColorBrush x:Key="mainBrushTranspert" Color="#7F1F252E" />
+        <SolidColorBrush x:Key="mainBrushTranspert2" Color="#19B6B6B6" />
+        <SolidColorBrush x:Key="mainBrushTranspert3" Color="#19CFAE40" />
+        <SolidColorBrush x:Key="borderBrush" Color="#FF8195AA" />
+        <SolidColorBrush x:Key="textboxBrush" Color="#FF2F2F38" />
+        <SolidColorBrush x:Key="nullBrush" Color="#00000000" />
+        <SolidColorBrush x:Key="textBrush" Color="White" />
+        <SolidColorBrush x:Key="textBrush2" Color="#FFFFB900" />
+        <SolidColorBrush x:Key="selectBrush" Color="#FFA08921" />
+        <SolidColorBrush x:Key="errBrush" Color="#FFB04020" />
+        <LinearGradientBrush x:Key="gradientBrush"  StartPoint="0,0" EndPoint="0,0.5" >
+            <GradientStop Color="#FF1F252E" Offset="0" />
+            <GradientStop Color="#FF293A49" Offset="1" />
+        </LinearGradientBrush>
+        <LinearGradientBrush x:Key="gradientBrushTranspert"  StartPoint="0,1" EndPoint="1,0.5" >
+            <GradientStop Color="#19E8C630" Offset="0" />
+            <GradientStop Color="#19FDFDFD" Offset="1" />
+        </LinearGradientBrush>
+        <!-- Colors -->
+        <Color x:Key="selectColor" A="200" R="90" G="125" B="155"/>
+        <Color x:Key="selectColor2" A="200" R="200" G="150" B="45"/>
+        <Color x:Key="selectColor3" A="200" R="130" G="105" B="30"/>
+        <Color x:Key="comboboxColor" A="120" R="5" G="67" B="83"/>
+
     </Application.Resources>
 </Application>

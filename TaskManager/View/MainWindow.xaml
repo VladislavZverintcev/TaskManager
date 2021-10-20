@@ -16,52 +16,23 @@
         <vm:WorkTasksViewModel></vm:WorkTasksViewModel>
     </Window.DataContext>
     <Window.Resources>
-        <SolidColorBrush x:Key="mainColor" Color="#FF1F252E" />
-        <SolidColorBrush x:Key="mainColorTranspert" Color="#7F1F252E" />
-        <SolidColorBrush x:Key="mainColorTranspert2" Color="#19B6B6B6" />
-        <SolidColorBrush x:Key="mainColorTranspert3" Color="#19CFAE40" />
-        <SolidColorBrush x:Key="mainColor2" Color="#FF293A49" />
-        <SolidColorBrush x:Key="borderColor" Color="#FF8195AA" />
-        <SolidColorBrush x:Key="textboxColor" Color="#FF2F2F38" />
-        <SolidColorBrush x:Key="nullColor" Color="#00000000" />
-        <SolidColorBrush x:Key="textColor" Color="White" />
-        <SolidColorBrush x:Key="textColor2" Color="#FFFFB900" />
-        <SolidColorBrush x:Key="selectBrushColor" Color="#FFA08921" />
-        <SolidColorBrush x:Key="errBrushColor" Color="#FFB04020" />
-
-        <LinearGradientBrush x:Key="gradientColor"  StartPoint="0,0" EndPoint="0,0.5" >
-            <GradientStop Color="#FF1F252E" Offset="0" />
-            <GradientStop Color="#FF293A49" Offset="1" />
-        </LinearGradientBrush>
-        <LinearGradientBrush x:Key="gradientColorTranspert"  StartPoint="0,1" EndPoint="1,0.5" >
-            <GradientStop Color="#19E8C630" Offset="0" />
-            <GradientStop Color="#19FDFDFD" Offset="1" />
-        </LinearGradientBrush>
-
-
-
-        <Color x:Key="selectColor" A="200" R="90" G="125" B="155"/>
-        <Color x:Key="selectColor2" A="200" R="200" G="150" B="45"/>
-        <Color x:Key="selectColor3" A="200" R="130" G="105" B="30"/>
-        <Color x:Key="comboboxColor" A="120" R="5" G="67" B="83"/>
-
         <Style x:Key="LabelAnnotation1" TargetType="Label">
-            <Setter Property="Foreground" Value="{StaticResource borderColor}"/>
+            <Setter Property="Foreground" Value="{StaticResource borderBrush}"/>
             <Setter Property="FontSize" Value="15"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
         </Style>
         <Style x:Key="LabelAnnotationMini" TargetType="Label">
-            <Setter Property="Foreground" Value="{StaticResource textColor2}"/>
+            <Setter Property="Foreground" Value="{StaticResource textBrush2}"/>
             <Setter Property="FontSize" Value="10"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="HorizontalContentAlignment" Value="Center"/>
         </Style>
 
         <Style x:Key="TextBoxStyle1" TargetType="TextBox">
-            <Setter Property="Background" Value="{StaticResource gradientColorTranspert}"/>
+            <Setter Property="Background" Value="{StaticResource gradientBrushTranspert}"/>
             <Setter Property="FontSize" Value="20"/>
-            <Setter Property="Foreground" Value="{StaticResource textColor}"/>
-            <Setter Property="BorderBrush" Value="{StaticResource nullColor}"/>
+            <Setter Property="Foreground" Value="{StaticResource textBrush}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource nullBrush}"/>
             <Setter Property="HorizontalContentAlignment" Value="Center"/>
             <Setter Property="Margin" Value="3,0"/>
             <Setter Property="CaretBrush">
@@ -77,10 +48,10 @@
 
         </Style>
         <Style x:Key="TextBoxStyleForNumeric" TargetType="TextBox">
-            <Setter Property="Background" Value="{StaticResource mainColorTranspert2}"/>
+            <Setter Property="Background" Value="{StaticResource mainBrushTranspert2}"/>
             <Setter Property="FontSize" Value="20"/>
-            <Setter Property="Foreground" Value="{StaticResource textColor}"/>
-            <Setter Property="BorderBrush" Value="{StaticResource nullColor}"/>
+            <Setter Property="Foreground" Value="{StaticResource textBrush}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource nullBrush}"/>
             <Setter Property="HorizontalContentAlignment" Value="Center"/>
             <Setter Property="Margin" Value="3,0"/>
             <Setter Property="CaretBrush">
@@ -139,14 +110,14 @@
                     <RowDefinition Height="0.00001*"/>
                     <RowDefinition MaxHeight="0"/>
                 </Grid.RowDefinitions>
-                <Border Grid.RowSpan="3" CornerRadius="2" Background="{StaticResource gradientColorTranspert}" />
+                <Border Grid.RowSpan="3" CornerRadius="2" Background="{StaticResource gradientBrushTranspert}" />
                 <RepeatButton Grid.Row="0" Style="{StaticResource ScrollBarLineButton}" Height="18" Command="ScrollBar.LineUpCommand" Content="M 0 4 L 8 4 L 4 0 Z" />
                 <Track Name="PART_Track" Grid.Row="1" IsDirectionReversed="true">
                     <Track.DecreaseRepeatButton>
                         <RepeatButton Style="{StaticResource ScrollBarPageButton}" Command="ScrollBar.PageUpCommand" />
                     </Track.DecreaseRepeatButton>
                     <Track.Thumb>
-                        <Thumb Style="{StaticResource ScrollBarThumb}" Margin="1,0,1,0" Background="{StaticResource mainColorTranspert3}" BorderBrush="{StaticResource selectBrushColor}" />
+                        <Thumb Style="{StaticResource ScrollBarThumb}" Margin="1,0,1,0" Background="{StaticResource mainBrushTranspert3}" BorderBrush="{StaticResource selectBrush}" />
                     </Track.Thumb>
                     <Track.IncreaseRepeatButton>
                         <RepeatButton Style="{StaticResource ScrollBarPageButton}" Command="ScrollBar.PageDownCommand" />
@@ -163,14 +134,14 @@
                     <ColumnDefinition Width="0.00001*"/>
                     <ColumnDefinition MaxWidth="0"/>
                 </Grid.ColumnDefinitions>
-                <Border Grid.ColumnSpan="3" CornerRadius="2" Background="{StaticResource gradientColorTranspert}"/>
+                <Border Grid.ColumnSpan="3" CornerRadius="2" Background="{StaticResource gradientBrushTranspert}"/>
                 <RepeatButton Grid.Column="0"  Style="{StaticResource ScrollBarLineButton}" Width="18" Command="ScrollBar.LineLeftCommand" Content="M 4 0 L 4 8 L 0 4 Z" />
                 <Track Name="PART_Track" Grid.Column="1" IsDirectionReversed="False">
                     <Track.DecreaseRepeatButton>
                         <RepeatButton Style="{StaticResource ScrollBarPageButton}" Command="ScrollBar.PageLeftCommand" />
                     </Track.DecreaseRepeatButton>
                     <Track.Thumb>
-                        <Thumb Style="{StaticResource ScrollBarThumb}" Margin="0,1,0,1" Background="{StaticResource mainColorTranspert3}" BorderBrush="{StaticResource selectBrushColor}" />
+                        <Thumb Style="{StaticResource ScrollBarThumb}" Margin="0,1,0,1" Background="{StaticResource mainBrushTranspert3}" BorderBrush="{StaticResource selectBrush}" />
                     </Track.Thumb>
                     <Track.IncreaseRepeatButton>
                         <RepeatButton Style="{StaticResource ScrollBarPageButton}" Command="ScrollBar.PageRightCommand" />
@@ -222,7 +193,7 @@
 
         <ControlTemplate x:Key="TextBoxBaseControlTemplate" TargetType="{x:Type TextBoxBase}">
             <Border Background="{TemplateBinding Background}" 
-                x:Name="Bd" BorderBrush="{StaticResource selectBrushColor}"
+                x:Name="Bd" BorderBrush="{StaticResource selectBrush}"
                 BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="5">
                 <ScrollViewer x:Name="PART_ContentHost"/>
             </Border>
@@ -247,10 +218,10 @@
                     <Style TargetType="Border">
                         <Style.Triggers>
                             <DataTrigger Binding="{Binding ErrTriggerTName}" Value="false">
-                                <Setter Property="BorderBrush"  Value="{StaticResource errBrushColor}"/>
+                                <Setter Property="BorderBrush"  Value="{StaticResource errBrush}"/>
                             </DataTrigger>
                             <DataTrigger Binding="{Binding ErrTriggerTName}" Value="true">
-                                <Setter Property="BorderBrush"  Value="{StaticResource selectBrushColor}"/>
+                                <Setter Property="BorderBrush"  Value="{StaticResource selectBrush}"/>
                             </DataTrigger>
                         </Style.Triggers>
                     </Style>
@@ -277,10 +248,10 @@
                     <Style TargetType="Border">
                         <Style.Triggers>
                             <DataTrigger Binding="{Binding ErrTriggerTHours}" Value="false">
-                                <Setter Property="BorderBrush"  Value="{StaticResource errBrushColor}"/>
+                                <Setter Property="BorderBrush"  Value="{StaticResource errBrush}"/>
                             </DataTrigger>
                             <DataTrigger Binding="{Binding ErrTriggerTHours}" Value="true">
-                                <Setter Property="BorderBrush"  Value="{StaticResource borderColor}"/>
+                                <Setter Property="BorderBrush"  Value="{StaticResource borderBrush}"/>
                             </DataTrigger>
                         </Style.Triggers>
                     </Style>
@@ -299,8 +270,8 @@
         </ControlTemplate>
 
         <Style x:Key="ButtonStyle1" TargetType="Button">
-            <Setter Property="Control.Background" Value="{StaticResource gradientColor}" />
-            <Setter Property="Control.Foreground" Value="{StaticResource textColor}" />
+            <Setter Property="Control.Background" Value="{StaticResource gradientBrush}" />
+            <Setter Property="Control.Foreground" Value="{StaticResource textBrush}" />
             <Setter Property="FontSize" Value="15"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
             <Setter Property="HorizontalContentAlignment" Value="Center"/>
@@ -310,7 +281,7 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
-                        <Border Background="{TemplateBinding Background}" BorderBrush="{StaticResource borderColor}" BorderThickness="1" CornerRadius="3" Margin="1">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="{StaticResource borderBrush}" BorderThickness="1" CornerRadius="3" Margin="1">
                             <ContentPresenter HorizontalAlignment="Center"
                                       VerticalAlignment="Center"/>
                         </Border>
@@ -320,7 +291,7 @@
             </Setter>
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="{StaticResource selectBrushColor}"/>
+                    <Setter Property="Background" Value="{StaticResource selectBrush}"/>
                 </Trigger>
                 <Trigger Property="IsEnabled" Value="False">
                     <Setter Property="Visibility" Value="Hidden"/>
@@ -335,20 +306,20 @@
                     <ColumnDefinition />
                     <ColumnDefinition Width="18" />
                 </Grid.ColumnDefinitions>
-                <Border x:Name="Border" Grid.ColumnSpan="2" CornerRadius="3" Background="{StaticResource mainColor2}" 
-                    BorderBrush="{StaticResource borderColor}"  BorderThickness="1" />
-                <Border x:Name="BorderToggle" Grid.Column="0" CornerRadius="3,0,0,3" Background="{StaticResource mainColorTranspert2}"
-                    BorderBrush="{StaticResource borderColor}" Margin="1" BorderThickness="0,0,1,0" />
-                <Path x:Name="Arrow" Grid.Column="1" Fill="{StaticResource selectBrushColor}" HorizontalAlignment="Center" VerticalAlignment="Center"
+                <Border x:Name="Border" Grid.ColumnSpan="2" CornerRadius="3" Background="{StaticResource mainBrush2}" 
+                    BorderBrush="{StaticResource borderBrush}"  BorderThickness="1" />
+                <Border x:Name="BorderToggle" Grid.Column="0" CornerRadius="3,0,0,3" Background="{StaticResource mainBrushTranspert2}"
+                    BorderBrush="{StaticResource borderBrush}" Margin="1" BorderThickness="0,0,1,0" />
+                <Path x:Name="Arrow" Grid.Column="1" Fill="{StaticResource selectBrush}" HorizontalAlignment="Center" VerticalAlignment="Center"
                   Data="M -2 0 L 2 4 L 6 0 Z"/>
             </Grid>
             <ControlTemplate.Triggers>
                 <Trigger Property="ToggleButton.IsMouseOver" Value="true">
-                    <Setter TargetName="Border" Property="Background" Value="{StaticResource selectBrushColor}" />
+                    <Setter TargetName="Border" Property="Background" Value="{StaticResource selectBrush}" />
                     <Setter TargetName="Border" Property="BorderThickness" Value="1" />
-                    <Setter TargetName="Border" Property="BorderBrush" Value="{StaticResource selectBrushColor}" />
-                    <Setter TargetName="Arrow" Property="Fill" Value="{StaticResource mainColor}" />
-                    <Setter TargetName="BorderToggle" Property="BorderBrush" Value="{StaticResource mainColor}" />
+                    <Setter TargetName="Border" Property="BorderBrush" Value="{StaticResource selectBrush}" />
+                    <Setter TargetName="Arrow" Property="Fill" Value="{StaticResource mainBrush}" />
+                    <Setter TargetName="BorderToggle" Property="BorderBrush" Value="{StaticResource mainBrush}" />
                 </Trigger>
             </ControlTemplate.Triggers>
         </ControlTemplate>
@@ -363,7 +334,7 @@
             <Setter Property="FontSize" Value="12"/>
             <Setter Property="Padding" Value="4"/>
             <Setter Property="Margin" Value="2"/>
-            <Setter Property="Foreground" Value="{StaticResource textColor}"/>
+            <Setter Property="Foreground" Value="{StaticResource textBrush}"/>
             <Setter Property="SnapsToDevicePixels" Value="True"/>
             <Setter Property="IsSynchronizedWithCurrentItem" Value="False"/>
             <Setter Property="HorizontalContentAlignment" Value="Left"/>
@@ -388,14 +359,14 @@
                                       IsChecked="{Binding Path=IsDropDownOpen,Mode=TwoWay,RelativeSource={RelativeSource TemplatedParent}}" ClickMode="Press"/>
                             <ContentPresenter Name="ContentSite" IsHitTestVisible="False" Content="{TemplateBinding SelectionBoxItem}" ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
                                           ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}" Margin="6,3,23,3" VerticalAlignment="Center"
-                                          HorizontalAlignment="Left" TextBlock.Foreground="{StaticResource textColor}" />
+                                          HorizontalAlignment="Left" TextBlock.Foreground="{StaticResource textBrush}" />
                             <TextBox x:Name="PART_EditableTextBox" Style="{x:Null}" Template="{StaticResource ComboBoxTextBox}" HorizontalAlignment="Left" 
                                  VerticalAlignment="Center" Margin="6,3,23,3" Focusable="True" Background="Transparent" Visibility="Hidden" IsReadOnly="{TemplateBinding IsReadOnly}"/>
                             <Popup Name="Popup" Placement="Bottom" IsOpen="{TemplateBinding IsDropDownOpen}" AllowsTransparency="True" Focusable="False"
                                PopupAnimation="Slide" Margin="3,-8,-3,8">
                                 <Grid Name="DropDown" SnapsToDevicePixels="True" MinWidth="{TemplateBinding ActualWidth}" MaxHeight="{TemplateBinding MaxDropDownHeight}">
-                                    <Border x:Name="DropDownBorder" Background="{StaticResource gradientColor}"  BorderThickness="1,1,1,1" CornerRadius="3" Margin="0,3,0,3"
-                                        BorderBrush="{StaticResource borderColor}"/>
+                                    <Border x:Name="DropDownBorder" Background="{StaticResource gradientBrush}"  BorderThickness="1,1,1,1" CornerRadius="3" Margin="0,3,0,3"
+                                        BorderBrush="{StaticResource borderBrush}"/>
                                     <!--***Scroll***-->
                                     <ScrollViewer Margin="0,3" SnapsToDevicePixels="True">
                                         <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Contained" />
@@ -427,7 +398,7 @@
         <Style x:Key="{x:Type ComboBoxItem}" TargetType="ComboBoxItem">
             <Setter Property="SnapsToDevicePixels" Value="true"/>
             <Setter Property="OverridesDefaultStyle" Value="true"/>
-            <Setter Property="Foreground" Value="{StaticResource textColor}"/>
+            <Setter Property="Foreground" Value="{StaticResource textBrush}"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="ComboBoxItem">
@@ -436,7 +407,7 @@
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsHighlighted" Value="true">
-                                <Setter TargetName="Border" Property="Background" Value="{StaticResource selectBrushColor}"/>
+                                <Setter TargetName="Border" Property="Background" Value="{StaticResource selectBrush}"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -450,9 +421,9 @@
                     <Setter Property="CornerRadius" Value="3"/>
                 </Style>
             </Style.Resources>
-            <Setter Property="Background" Value="{StaticResource mainColorTranspert}"/>
-            <Setter Property="BorderBrush" Value="{StaticResource borderColor}"/>
-            <Setter Property="Foreground" Value="{StaticResource textColor}"/>
+            <Setter Property="Background" Value="{StaticResource mainBrushTranspert}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource borderBrush}"/>
+            <Setter Property="Foreground" Value="{StaticResource textBrush}"/>
             <Setter Property="Margin" Value="3"/>
         </Style>
 
@@ -479,8 +450,8 @@
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsSelected" Value="true">
                                 <Setter TargetName="Border" Property="Background"
-                                    Value="{StaticResource gradientColorTranspert}"/>
-                                <Setter TargetName="Border" Property="BorderBrush" Value="{StaticResource selectBrushColor}"/>
+                                    Value="{StaticResource gradientBrushTranspert}"/>
+                                <Setter TargetName="Border" Property="BorderBrush" Value="{StaticResource selectBrush}"/>
                                 <Setter TargetName="Border" Property="BorderThickness" Value="1"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
@@ -503,14 +474,14 @@
         </i:EventTrigger>
     </i:Interaction.Triggers>
     
-    <Grid Name="mainGrid" Background= "{StaticResource gradientColor}">
+    <Grid Name="mainGrid" Background= "{StaticResource gradientBrush}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" MinWidth="200"/>
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="*" MinWidth="200"/>
         </Grid.ColumnDefinitions>
         <GridSplitter Grid.Column="1" Grid.RowSpan="2" ShowsPreview="False" Width="3"
-    HorizontalAlignment="Center" VerticalAlignment="Stretch" Background="{StaticResource borderColor}"/>
+    HorizontalAlignment="Center" VerticalAlignment="Stretch" Background="{StaticResource borderBrush}"/>
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="32"></RowDefinition>
@@ -527,7 +498,7 @@
             </Grid>
             <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Style="{StaticResource StyleScrollViewer}">
                 <ctr:ATreeView x:Name="taskTree" ItemsSource="{Binding TaskItems}" 
-                       Background="{StaticResource mainColorTranspert}" 
+                       Background="{StaticResource mainBrushTranspert}" 
                        SelectedItem="{Binding SelectedWorkTask, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="MouseDown">
@@ -559,34 +530,34 @@
                                     <ColumnDefinition></ColumnDefinition>
                                 </Grid.ColumnDefinitions>
                                 <StackPanel Grid.Column="0" Margin="2">
-                                    <Border CornerRadius="2" BorderThickness="1" BorderBrush="{StaticResource borderColor}">
-                                        <TextBlock Text= "{Binding Name, StringFormat='📋 {0}'}" Foreground="{StaticResource textColor}" FontSize="14" Margin="3" Padding="5,0"/>
+                                    <Border CornerRadius="2" BorderThickness="1" BorderBrush="{StaticResource borderBrush}">
+                                        <TextBlock Text= "{Binding Name, StringFormat='📋 {0}'}" Foreground="{StaticResource textBrush}" FontSize="14" Margin="3" Padding="5,0"/>
                                     </Border>
                                 </StackPanel>
                                 <ComboBox SelectedIndex="{Binding Status}" Grid.Column="1" ItemsSource="{Binding Path=StatusList, UpdateSourceTrigger=PropertyChanged}" />
                                 <StackPanel Grid.Column="2" Margin="2">
-                                    <Border CornerRadius="2" BorderThickness="1" BorderBrush="{StaticResource borderColor}">
+                                    <Border CornerRadius="2" BorderThickness="1" BorderBrush="{StaticResource borderBrush}">
                                         <Grid>
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition/>
                                                 <ColumnDefinition/>
                                             </Grid.ColumnDefinitions>
-                                            <TextBlock Text="⏳" Grid.Column="0" Foreground="{StaticResource textColor}" FontSize="14" Margin="3" Padding="2,0"/>
+                                            <TextBlock Text="⏳" Grid.Column="0" Foreground="{StaticResource textBrush}" FontSize="14" Margin="3" Padding="2,0"/>
                                             <TextBlock Text="{Binding ExecutionTimeWithSubs.TotalHours, StringFormat={}{0:#0.0}, Mode=OneWay}" Grid.Column="1" 
-                                                   Foreground="{StaticResource textColor}" FontSize="14" Margin="3" Padding="5,0"/>
+                                                   Foreground="{StaticResource textBrush}" FontSize="14" Margin="3" Padding="5,0"/>
                                         </Grid>
                                     </Border>
                                 </StackPanel>
                                 <StackPanel Grid.Column="3" Margin="2">
-                                    <Border CornerRadius="2" BorderThickness="1" BorderBrush="{StaticResource borderColor}">
+                                    <Border CornerRadius="2" BorderThickness="1" BorderBrush="{StaticResource borderBrush}">
                                         <Grid>
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition/>
                                                 <ColumnDefinition/>
                                             </Grid.ColumnDefinitions>
-                                            <TextBlock Text="⌚" Grid.Column="0" Foreground="{StaticResource textColor}" FontSize="14" Margin="3" Padding="2,0"/>
+                                            <TextBlock Text="⌚" Grid.Column="0" Foreground="{StaticResource textBrush}" FontSize="14" Margin="3" Padding="2,0"/>
                                             <TextBlock Text="{Binding ToCompleteTimeWithSubs.TotalHours, StringFormat={}{0:#0}, Mode=OneWay}" 
-                                                   Grid.Column="1" Foreground="{StaticResource textColor}" FontSize="14" Margin="3" Padding="2,0"/>
+                                                   Grid.Column="1" Foreground="{StaticResource textBrush}" FontSize="14" Margin="3" Padding="2,0"/>
                                         </Grid>
                                     </Border>
                                 </StackPanel>
@@ -597,7 +568,7 @@
                 </ctr:ATreeView>
             </ScrollViewer>
         </Grid>
-        <Grid x:Name="TaskTable" Grid.Column="2" Visibility ="{Binding TaskTableIsVisible}" Background="{StaticResource mainColorTranspert2}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Height="{Binding Height, ElementName=mainGrid}">
+        <Grid x:Name="TaskTable" Grid.Column="2" Visibility ="{Binding TaskTableIsVisible}" Background="{StaticResource mainBrushTranspert2}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Height="{Binding Height, ElementName=mainGrid}">
             <Grid.Style>
                 <Style TargetType="Grid">
                     <Style.Triggers>
@@ -654,13 +625,13 @@
                     <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <Label Content="{x:Static prop:Resources.tableTaskAnnotation3}" Grid.Column="0" Style="{StaticResource LabelAnnotation1}"/>
-                <Label x:Name="TaskRegDate" Grid.Column="1" Style="{StaticResource LabelAnnotation1}" HorizontalContentAlignment="Right" Foreground="{StaticResource textColor}">
+                <Label x:Name="TaskRegDate" Grid.Column="1" Style="{StaticResource LabelAnnotation1}" HorizontalContentAlignment="Right" Foreground="{StaticResource textBrush}">
                     <Label.Content>
                         <TextBlock Text="{Binding TaskRegTime, Mode=OneWay, StringFormat=\{0:g\}, ConverterCulture=ru}"/>
                     </Label.Content>
                 </Label>
             </Grid>
-            <Border Grid.Row="5" BorderBrush="{StaticResource borderColor}" CornerRadius="2" BorderThickness="1">
+            <Border Grid.Row="5" BorderBrush="{StaticResource borderBrush}" CornerRadius="2" BorderThickness="1">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition></ColumnDefinition>
@@ -681,27 +652,27 @@
                     <ColumnDefinition Width="49*"/>
                 </Grid.ColumnDefinitions>
                 <Label Content="{x:Static prop:Resources.tableTaskAnnotation5}" Grid.Column="0" Style="{StaticResource LabelAnnotation1}"/>
-                <Label Grid.Column="1" Style="{StaticResource LabelAnnotation1}" HorizontalContentAlignment="Right" Foreground="{StaticResource textColor}" Grid.ColumnSpan="2" Margin="5,0">
+                <Label Grid.Column="1" Style="{StaticResource LabelAnnotation1}" HorizontalContentAlignment="Right" Foreground="{StaticResource textBrush}" Grid.ColumnSpan="2" Margin="5,0">
                     <Label.Content>
                         <TextBlock Text="{Binding ExecutionTime.TotalHours, StringFormat={}{0:#0.0}}" DataContext="{Binding SelectedItem, ElementName=taskTree, Mode=OneWay}"/>
                     </Label.Content>
                 </Label>
             </Grid>
-            <Border Grid.Row="7" BorderBrush="{StaticResource borderColor}" CornerRadius="2" BorderThickness="1">
+            <Border Grid.Row="7" BorderBrush="{StaticResource borderBrush}" CornerRadius="2" BorderThickness="1">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="160"></ColumnDefinition>
                         <ColumnDefinition></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <Label Content="{x:Static prop:Resources.tableTaskAnnotation8}" Grid.Column="0" Style="{StaticResource LabelAnnotation1}"/>
-                    <Label x:Name="TaskFinishDate" Grid.Column="1" Style="{StaticResource LabelAnnotation1}" HorizontalContentAlignment="Right" Foreground="{StaticResource textColor}">
+                    <Label x:Name="TaskFinishDate" Grid.Column="1" Style="{StaticResource LabelAnnotation1}" HorizontalContentAlignment="Right" Foreground="{StaticResource textBrush}">
                         <Label.Content>
                             <TextBlock Text="{Binding TaskFinishTime, Mode=OneWay, StringFormat=\{0:g\}, ConverterCulture=ru}"/>
                         </Label.Content>
                     </Label>
                 </Grid>
             </Border>
-            <Border Grid.Row="8" BorderBrush="{StaticResource borderColor}" CornerRadius="2" BorderThickness="1">
+            <Border Grid.Row="8" BorderBrush="{StaticResource borderBrush}" CornerRadius="2" BorderThickness="1">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>

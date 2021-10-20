@@ -103,6 +103,7 @@ namespace TaskManager.ViewModel
         {
             if(Application.Current?.MainWindow != null)
             {
+                //This is look like so queerly, but Window.Activate not working
                 Application.Current.MainWindow.Topmost = true;
                 Application.Current.MainWindow.Topmost = false;
             }
@@ -551,15 +552,15 @@ namespace TaskManager.ViewModel
 
         void GetLoadingWindow()
         {
-            Color a = new Color { A = 255, R = 41, G = 58, B = 73 };
-            Color b = new Color { A = 255, R = 31, G = 37, B = 46 };
-            LinearGradientBrush mainbrush = new LinearGradientBrush(a, b, 90);
-            Color title_foreground = new Color { A = 255, R = 255, G = 185, B = 0 };
-            Color annotation_foreground = new Color { A = 255, R = 255, G = 255, B = 225 };
-            string title = Properties.Resources.titleLoading;
-            string annotation = Properties.Resources.annotationLoading;
-            UniversalLoadingWindow ulw = new UniversalLoadingWindow(title, annotation, mainbrush,
-                title_foreground, title_foreground, annotation_foreground);
+            UniversalLoadingWindow ulw = new UniversalLoadingWindow
+                (
+                Properties.Resources.titleLoading,
+                Properties.Resources.annotationLoading,
+                (LinearGradientBrush)Application.Current.Resources["gradientBrush"],
+                ((SolidColorBrush)Application.Current.Resources["textBrush2"]).Color,
+                ((SolidColorBrush)Application.Current.Resources["textBrush2"]).Color,
+                ((SolidColorBrush)Application.Current.Resources["textBrush"]).Color
+                );
             LoadingIsOver += () => ulw?.Close();
             ulw.ShowDialog();
         }
