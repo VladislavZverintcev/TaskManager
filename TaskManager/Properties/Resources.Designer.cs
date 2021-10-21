@@ -124,6 +124,15 @@ namespace TaskManager.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Поиск....
+        /// </summary>
+        public static string searchText {
+            get {
+                return ResourceManager.GetString("searchText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на 📋 Имя задачи:.
         /// </summary>
         public static string tableTaskAnnotation1 {

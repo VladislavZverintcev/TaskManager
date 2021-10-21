@@ -138,6 +138,9 @@
   <data name="messageErrorSqlConnection" xml:space="preserve">
     <value>Отсутствует подключение к базе данных. Либо не установлен соответствующий дистрибутив или недостаточно прав для создания базы данных, свяжитесь с разработчиком!</value>
   </data>
+  <data name="searchText" xml:space="preserve">
+    <value>Поиск...</value>
+  </data>
   <data name="tableTaskAnnotation1" xml:space="preserve">
     <value>📋 Имя задачи:</value>
   </data>

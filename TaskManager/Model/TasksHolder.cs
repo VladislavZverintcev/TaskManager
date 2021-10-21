@@ -90,7 +90,41 @@ namespace TaskManager.Model
         }
 
         #region TaskWorks
-
+        #region private
+        static void ExpandFoundsBranches(List<string> tasksNames)
+        {
+            foreach (var name in tasksNames)
+            {
+                GetTaskByName(name).ExpandUpLinksWithThisTask();
+            }
+        }
+        static List<string> FoundTasksNames()
+        {
+            var foundTasksNames = new List<string>();
+            if (TaskList != null && TaskList.Count != 0)
+            {
+                foreach (var wTask in TaskList)
+                {
+                    GetFoundTasksNames(wTask);
+                }
+            }
+            void GetFoundTasksNames(WorkTask currentTask)
+            {
+                if (currentTask.IsFound)
+                {
+                    foundTasksNames.Add(currentTask.Name);
+                }
+                if (currentTask.SubWorkTasks != null && currentTask.SubWorkTasks.Count != 0)
+                {
+                    foreach (var sTask in currentTask.SubWorkTasks)
+                    {
+                        GetFoundTasksNames(sTask);
+                    }
+                }
+            }
+            return foundTasksNames;
+        }
+        #endregion private
         public static void AddTask(WorkTask addedTask, WorkTask mainTask = null)
         {
             if(mainTask == null)
@@ -103,7 +137,7 @@ namespace TaskManager.Model
             {
                 mainTask.AddTask(addedTask);
                 mainTask.IsExpanded = true;
-                addedTask.ExpandUpLinks();
+                addedTask.ExpandUpLinksWithThisTask();
                 var rep = new DB.TasksRepository();
                 rep.AddTask(addedTask, mainTask);
             }
@@ -126,6 +160,39 @@ namespace TaskManager.Model
                 foreach(var wTask in TaskList)
                 {
                     wTask.SortSubsCascad();
+                }
+            }
+        }
+        public static void MarkingFoundFull(string searchStr)
+        {
+            if (TaskList != null && TaskList.Count != 0)
+            {
+                foreach (var wTask in TaskList)
+                {
+                    wTask.MarkingFound(searchStr);
+                }
+            }
+            CloseBrunchesFull();
+            ExpandFoundsBranches(FoundTasksNames());
+        }
+        public static void DeMarkingFull()
+        {
+            if (TaskList != null && TaskList.Count != 0)
+            {
+                foreach (var wTask in TaskList)
+                {
+                    wTask.DeMarkingFound();
+                    wTask.CloseBranchToDown();
+                }
+            }
+        }
+        public static void CloseBrunchesFull()
+        {
+            if(TaskList != null && TaskList.Count != 0)
+            {
+                foreach(var wTask in TaskList)
+                {
+                    wTask.CloseBranchToDown();
                 }
             }
         }

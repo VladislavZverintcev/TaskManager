@@ -25,6 +25,7 @@ namespace TaskManager.Model
         ObservableCollection<WorkTask> subWorkTasks = new ObservableCollection<WorkTask>();
         private bool _IsSelected;
         private bool _IsExpanded;
+        private bool _IsFound = false;
         #endregion Fields
 
         #region Properties
@@ -121,6 +122,16 @@ namespace TaskManager.Model
             set { _IsExpanded = value; PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("IsExpanded")); 
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("ToCompleteTimeWithSubs"));
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("ExecutionTimeWithSubs"));
+            }
+        }
+        [NotMapped]
+        public bool IsFound
+        {
+            get { return _IsFound; }
+            set
+            {
+                _IsFound = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("IsFound"));
             }
         }
 
@@ -451,14 +462,6 @@ namespace TaskManager.Model
             SortSubs();
             Status = status;
         }
-        public void ExpandUpLinks()
-        {
-            if(upLinkTask != null)
-            {
-                upLinkTask.IsExpanded = true;
-                upLinkTask.ExpandUpLinks();
-            }
-        }
         public void DeleteSubTask(string taskName)
         {
             if (SubWorkTasks != null)
@@ -575,6 +578,49 @@ namespace TaskManager.Model
                 }
             }
         }
+        public void MarkingFound(string searchStr)
+        {
+            if (Name.ToLower().Contains(searchStr.ToLower()))
+            {
+                IsFound = true;
+            }
+            else { IsFound = false; }
+            if (SubWorkTasks != null && SubWorkTasks.Count != 0)
+            {
+                foreach (var wTask in SubWorkTasks)
+                {
+                    wTask.MarkingFound(searchStr);
+                }
+            }
+        }
+        public void DeMarkingFound()
+        {
+            IsFound = false;
+            if (SubWorkTasks != null && SubWorkTasks.Count != 0)
+            {
+                foreach (var wTask in SubWorkTasks)
+                {
+                    wTask.DeMarkingFound();
+                }
+            }
+        }
+        public void ExpandUpLinksWithThisTask()
+        {
+            IsExpanded = true;
+            UpLinkTask?.ExpandUpLinksWithThisTask();
+        }
+        public void CloseBranchToDown()
+        {
+            IsExpanded = false;
+            if(SubWorkTasks != null && SubWorkTasks.Count != 0)
+            {
+                foreach(var sTask in SubWorkTasks)
+                {
+                    sTask.CloseBranchToDown();
+                }
+            }
+        }
+
         #endregion Public
 
         #endregion Methods

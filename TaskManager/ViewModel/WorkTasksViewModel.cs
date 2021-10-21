@@ -550,6 +550,59 @@ namespace TaskManager.ViewModel
 
         #endregion TableProperties
 
+        #region SearchPanel
+        #region Props
+        public string AnnotationSearchText
+        {
+            get { return (string)GetValue(AnnotationSearchTextProperty); }
+            set { SetValue(AnnotationSearchTextProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for AnnotationSearchText.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty AnnotationSearchTextProperty =
+            DependencyProperty.Register("AnnotationSearchText", typeof(string), typeof(WorkTasksViewModel), new PropertyMetadata(Properties.Resources.searchText));
+
+        public string SearchText
+        {
+            get { return (string)GetValue(SearchTextProperty); }
+            set { SetValue(SearchTextProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for SearchText.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty SearchTextProperty =
+            DependencyProperty.Register("SearchText", typeof(string), typeof(WorkTasksViewModel), new PropertyMetadata(String.Empty));
+
+        #endregion Props
+
+        #region SearchTextChanged
+        RelayCommand _searchTextChangedComm;
+        public ICommand SearchTextChangedComm
+        {
+            get
+            {
+                if (_searchTextChangedComm == null)
+                {
+                    _searchTextChangedComm = new RelayCommand(() => CheckChangesSearch(), true);
+                }
+                return _searchTextChangedComm;
+            }
+        }
+        void CheckChangesSearch()
+        {
+            if (string.IsNullOrWhiteSpace(SearchText))
+            {
+                AnnotationSearchText = Properties.Resources.searchText;
+                Model.TasksHolder.DeMarkingFull();
+            }
+            else
+            {
+                AnnotationSearchText = string.Empty;
+                Model.TasksHolder.MarkingFoundFull(SearchText);
+            }
+        }
+        #endregion SearchTextChanged
+
+        #endregion SearchPanel
         void GetLoadingWindow()
         {
             UniversalLoadingWindow ulw = new UniversalLoadingWindow
