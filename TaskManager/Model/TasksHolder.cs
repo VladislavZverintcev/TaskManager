@@ -196,7 +196,30 @@ namespace TaskManager.Model
                 }
             }
         }
-
+        public static int GetTasksCount()
+        {
+            int result = 0;
+            if(TaskList != null)
+            {
+                foreach(var wTask in TaskList)
+                {
+                    result++;
+                    GetCountSubs(wTask);
+                }
+            }
+            void GetCountSubs(WorkTask sTask)
+            {
+                if(sTask.SubWorkTasks != null && sTask.SubWorkTasks.Count != 0)
+                {
+                    foreach(var subTask in sTask.SubWorkTasks)
+                    {
+                        result++;
+                        GetCountSubs(subTask);
+                    }
+                }
+            }
+            return result;
+        }
         #endregion TaskWorks
 
         #endregion Methods

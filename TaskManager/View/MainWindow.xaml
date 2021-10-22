@@ -516,6 +516,18 @@
                             </i:Interaction.Triggers>
                         </TextBox>
                     </Grid>
+                    <Border.Style>
+                        <Style TargetType="Border">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsSearchShown}" Value="False">
+                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding IsSearchShown}" Value="True">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Border.Style>
                 </Border>
                 <Button Grid.Column="2" Width="32" Content="🗑" Style="{StaticResource ButtonStyle1}" Command="{Binding DelTaskComm}"/>
             </Grid>

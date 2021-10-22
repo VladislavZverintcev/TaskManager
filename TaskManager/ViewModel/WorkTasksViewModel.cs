@@ -71,6 +71,7 @@ namespace TaskManager.ViewModel
                 System.Windows.MessageBox.Show(ex.Message, Properties.Resources.titleError, MessageBoxButton.OK, MessageBoxImage.Error);
                 App.Current.Shutdown();
             }
+            CheckConditionSearchShown();
             TaskTableIsVisible = Visibility.Hidden;
             LoadingIsOver?.Invoke();
         }
@@ -177,11 +178,13 @@ namespace TaskManager.ViewModel
                 {
                     Model.WorkTask newTask = new Model.WorkTask(Model.TasksHolder.GetNewName(), new TimeSpan(), new ObservableCollection<string>());
                     Model.TasksHolder.AddTask(newTask, SelectedWorkTask);
+                    CheckConditionSearchShown();
                 }
                 else
                 {
                     Model.WorkTask newTask = new Model.WorkTask(Model.TasksHolder.GetNewName(), new TimeSpan(), new ObservableCollection<string>());
                     Model.TasksHolder.AddTask(newTask);
+                    CheckConditionSearchShown();
                 }
             }
             catch(Exception ex)
@@ -216,6 +219,7 @@ namespace TaskManager.ViewModel
                         parentTask.IsSelected = true;
                         var rep = new DB.TasksRepository();
                         rep.DelTask(currentTaskID);
+                        CheckConditionSearchShown();
                     }
                     else
                     {
@@ -223,6 +227,7 @@ namespace TaskManager.ViewModel
                         rep.DelTask(SelectedWorkTask.Id);
                         Model.TasksHolder.TaskList.Remove(SelectedWorkTask);
                         DeSelect();
+                        CheckConditionSearchShown();
                     }
                 }
                 catch(Exception ex)
@@ -572,6 +577,16 @@ namespace TaskManager.ViewModel
         public static readonly DependencyProperty SearchTextProperty =
             DependencyProperty.Register("SearchText", typeof(string), typeof(WorkTasksViewModel), new PropertyMetadata(String.Empty));
 
+        public bool IsSearchShown
+        {
+            get { return (bool)GetValue(IsSearchShownProperty); }
+            set { SetValue(IsSearchShownProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for IsSearchShown.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty IsSearchShownProperty =
+            DependencyProperty.Register("IsSearchShown", typeof(bool), typeof(WorkTasksViewModel), new PropertyMetadata(false));
+
         #endregion Props
 
         #region SearchTextChanged
@@ -602,6 +617,14 @@ namespace TaskManager.ViewModel
         }
         #endregion SearchTextChanged
 
+        void CheckConditionSearchShown()
+        {
+            if(Model.TasksHolder.GetTasksCount() > 1)
+            {
+                IsSearchShown = true;
+            }
+            else { IsSearchShown = false; }
+        }
         #endregion SearchPanel
         void GetLoadingWindow()
         {
